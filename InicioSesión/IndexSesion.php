@@ -2,7 +2,7 @@
     //solicitar el archivo de conexion a la base de datos
     //include 'Conexion.php';
     require_once "../conexion.php";
-    //$sql = "SELECT * FROM administradores "; /imgsesion/coexion.php
+    //$sql = "SELECT * FROM administradores "; /imgsesion/coexion.
 ?>
 <!DOCTYPE html>
 <html lang="en">
