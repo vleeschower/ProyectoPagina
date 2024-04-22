@@ -4,6 +4,7 @@
     require_once "../conexion.php";
     //$sql = "SELECT * FROM administradores "; /imgsesion/coexion.
 ?>
+<!--Esta es una prueba para ver si se realzian bien los cambios-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,7 +39,7 @@
             
             <!--LO0GIN-->
             <div class="form login_form">
-                <form action="prueba.php" method="POST">
+                <form action="administrador/admin.html" method="POST">
                     <h2>Login</h2>
                         
                     <div class="input_box">
@@ -64,7 +65,7 @@
                     </div>
 
                     <button class="button">Iniciar Sesión</button>
-                    <div class="login_signup">¿No Tienes Cuenta? <a href="#" id="signup">Registrarse</a></div>
+                    <div class="login_signup">¿No Tienes Cuenta? <a href="admin.html" id="signup">Registrarse</a></div>
                 </form>
             </div>
             
