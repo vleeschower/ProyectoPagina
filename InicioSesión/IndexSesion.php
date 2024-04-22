@@ -6,6 +6,8 @@
 ?>
 <!--Esta es una prueba para ver si se realzian bien los cambios-->
 <!--Esta es una segunda prueba para ver si se realzian bien los cambios-->
+
+<!--Como estan chavos les gusta este repositorio-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
