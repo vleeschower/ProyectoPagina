@@ -1,29 +1,66 @@
 <?php
     //solicitar el archivo de conexion a la base de datos
-    //include 'Conexion.php';
     require_once "../conexion.php";
-    //$sql = "SELECT * FROM administradores "; /imgsesion/coexion.
-?>
-<!--Esta es una prueba para ver si se realzian bien los cambios-->
-<!--Esta es una segunda prueba para ver si se realzian bien los cambios-->
+    session_start();
 
-<!--Como estan chavos les gusta este repositorio-->
-<!--Esta es una prueba de actualizacion 3-->
-<!--Esta es una prueba de actualizacion 5-->
+    if(isset($_SESSION['message'])) {
+        echo $_SESSION['message'];
+        // Eliminar el mensaje después de mostrarlo
+        unset($_SESSION['message']);
+    }
+
+    if($_POST){
+        $id=$_POST['id'];
+        $email = $_POST['Correo'];
+        $password = $_POST['Contraseña'];
+    
+        $sql = "SELECT * FROM usuarios WHERE Correo='$email'";
+        echo $sql;
+    
+        $resultado = $conecta->query($sql);
+        $num = $resultado->num_rows;
+    
+        if($num>0){
+            $row = $resultado->fetch_assoc();
+            $password_bd = $row['Contraseña'];
+    
+            if($password_bd == $password){
+                $_SESSION['id'] = $row['id'];
+                $_SESSION['Correo'] = $row['Correo'];
+                $_SESSION['id_cargo'] = $row['id_cargo'];
+                $id_cargo=$_SESSION['id_cargo'];
+
+                if($id_cargo==1){
+                    header("Location: ../administrador/admin.php");
+                }else if($id_cargo==2){
+                    header("Location: ../prueba.php");
+                }
+    
+            }else{
+                echo "La contraseña no coincide";
+            }
+    
+        }else{
+            echo"No existe el usuario";
+        }
+    }
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">    
     
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <title>Login & Register</title>
+    <title>Tico's Burger</title>
+
 </head>
 <body>
     <header class="header">        
         <nav class="nav">
-            <a href="#" class="nav_logo">Logotipo</a>
+            <a href="IndexSesion.php"><img src="imgSesión/Logo.png" alt="Logotipo" style="width: 250px;"></a>
             
             <ul class="nav_items">
                 <li class="nav_item">
@@ -34,7 +71,7 @@
                 </li>                
             </ul>
 
-            <button class="button" id="form-open">Login</button>        
+            <button class="button" id="form-open">Iniciar Sesión</button>        
         </nav>
     </header>
     <!--Primer Cambio En Git 2-->    
@@ -44,18 +81,18 @@
             
             <!--LO0GIN-->
             <div class="form login_form">
-                <form action="administrador/admin.html" method="POST">
-                    <h2>Login</h2>
+                <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                    <h2>Iniciar Sesión</h2>
                         
                     <div class="input_box">
                         <!-- ingresar Email y poner un Icono en el TextBox -->
-                        <input type="email" placeholder="Ingresa tu Email" required>
+                        <input type="email" name="Correo" placeholder="Ingresa tu Email" required>
                         <i class="uil uil-envelope-alt email"></i><!-- Icono -->                        
                     </div>
 
                     <div class="input_box">
                         <!-- ingresar Contraseña y poner un Icono en el TextBox -->
-                        <input type="password" placeholder="Ingresa tu Contraseña" required>
+                        <input type="password" name="Contraseña" placeholder="Ingresa tu Contraseña" required>
                         <i class="uil uil-lock password"></i><!-- Icono -->
                         <i class="uil uil-eye-slash pw_hide"></i><!-- Icono Para ocultar y ver Contraseña -->
                     </div>
@@ -63,62 +100,49 @@
                     <div class="option_field">
                         <span class="checkbox">
                             <input type="checkbox" id="check">
-                            <label for="check">Recordarme</label>
+                            <label for="check">Recordar usuario</label><br>
                         </span>
-
-                        <a href="#" class="forgot_pw">¿Olvidaste tu Contraseña?</a>
                     </div>
 
-                    <button class="button">Iniciar Sesión</button>
-                    <div class="login_signup">¿No Tienes Cuenta? <a href="admin.html" id="signup">Registrarse</a></div>
+                    <a href="#" class="forgot_pw">¿Has olvidado tu contraseña?</a>
+
+                    <button class="button">Ingresar</button>
+                    <div class="login_signup">¿No tienes una cuenta? <a href="admin.html" id="signup">¡Registrate!</a></div>
                 </form>
             </div>
-            
+
             <!--REGISTROS-->
             <div class="form signup_form">
-                <form action="#">
+                <form method="POST" action="../registro.php">
                     <h2>Registro</h2>
 
                     <div class="input_box">                        
                         <!-- ingresar Email y poner un Icono en el TextBox -->
-                        <input type="nombre" placeholder="Ingresa tu Nombre" required>
+                        <input type="text" name="Nombre" placeholder="Ingresa tu Nombre" required>
                         <i class=" uil-user-circle nombre"></i><!-- Icono -->
                     </div>
 
                     <div class="input_box">                        
                         <!-- ingresar Email y poner un Icono en el TextBox -->
-                        <input type="appaterno" placeholder="Ingresa tu Apellido Paterno" required>
+                        <input type="type" name="Apellidos" placeholder="Ingresa tus Apellidos" required>
                         <i class=" uil-user-circle appaterno"></i><!-- Icono -->
-                    </div>
+                    </div>                  
 
                     <div class="input_box">                        
                         <!-- ingresar Email y poner un Icono en el TextBox -->
-                        <input type="apmaterno" placeholder="Ingresa tu Apellido Materno" required>
-                        <i class=" uil-user-circle apmaterno"></i><!-- Icono -->
-                    </div>                    
-
-                    <div class="input_box">                        
-                        <!-- ingresar Email y poner un Icono en el TextBox -->
-                        <input type="email" placeholder="Ingresa tu Email" required>
+                        <input type="email" name="Correo" placeholder="Ingresa tu Correo" required>
                         <i class="uil uil-envelope-alt email"></i><!-- Icono -->
                     </div>
 
                     <div class="input_box">
                         <!-- ingresar Contraseña y poner un Icono en el TextBox -->
-                        <input type="password" placeholder="Ingresa tu Contraseña" required>
-                        <i class="uil uil-lock password"></i><!-- Icono -->
-                        <i class="uil uil-eye-slash pw_hide"></i><!-- Icono Para ocultar y ver Contraseña -->
-                    </div>        
-                    
-                    <div class="input_box">
-                        <!-- ingresar Contraseña y poner un Icono en el TextBox -->
-                        <input type="password" placeholder="Confirmar Contraseña" required>
+                        <input type="text" name="Contraseña" placeholder="Ingresa tu Contraseña" required>
                         <i class="uil uil-lock password"></i><!-- Icono -->
                         <i class="uil uil-eye-slash pw_hide"></i><!-- Icono Para ocultar y ver Contraseña -->
                     </div>
-
+                    
                     <button class="button">Registrarse</button>
-                    <div class="login_signup">¿Tienes una Cuenta? <a href="#" id="login">Login</a></div>
+                    <div class="login_signup">¿Tienes una Cuenta? <a href="#" id="login">Iniciar Sesión</a></div>
                 </form>
             </div>
         </div>

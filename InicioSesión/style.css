@@ -9,12 +9,23 @@
     font-family: "Poppins", sans-serif;
 }
 
+.success-message {
+    background-color: black; /* Fondo negro */
+    color: lime; /* Color de texto verde fosforescente */
+    font-size: 18px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px; /* Esto hará que las esquinas del mensaje sean redondeadas */
+    margin: 0px 0;
+    border: 1px solid #39ff14; /* El borde también será verde fosforescente */    
+}
+
 a{
     text-decoration: none;
 }
 
 .header{
-    position: fixed;
+    position: absolute;
     height: 60px;
     width: 90%;
     z-index: 100;
@@ -45,7 +56,7 @@ a{
     position: relative;
     height: 100vh;
     width: 100%;
-    background-image: url("imgSesión/FondoEdificio.jpg");
+    background-image: url("imgSesión/pexels-rajesh-tp-749235-1600727.jpg");
     background-position: center;
     background-size: cover;
 }
@@ -54,7 +65,7 @@ a{
     font-size: 25px;
 }
 
-.nav_item{
+.nav_item{    
     column-gap: 25px;
 }
 
