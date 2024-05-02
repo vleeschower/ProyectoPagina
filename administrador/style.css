@@ -302,7 +302,7 @@ main.min-main{
 }
 
 /*------------------> Responsive*/
-@media (max-height: 660px){
+@media (max-height: 860px){
     .barra-lateral .nombre-pagina{
         margin-bottom: 5px;
     }
@@ -310,7 +310,7 @@ main.min-main{
         margin-bottom: 3px;
     }
 }
-@media (max-height: 600px){
+@media (max-height: 800px){
     .barra-lateral{
         position: fixed;
         left: -250px;
