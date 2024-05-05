@@ -1,6 +1,6 @@
 <?php
     session_start();
-    //solicitar el archivo de conexion a la base de datos
+    //solicitar el archivo de conexion a la base de datosss
     require_once "conexion.php";
 
     if($_POST){
